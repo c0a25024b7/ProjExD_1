@@ -14,6 +14,8 @@ def main():
     bgflip_img = pg.transform.flip(bgflip_img,True,False)
     fly_img = pg.image.load("fig/3.png")#練習３
     fly_img = pg.transform.flip(fly_img ,True ,False)#練習３
+    fly_rct = fly_img.get_rect() # 練習１０ー１
+    fly_rct.center =300 ,200 #練習１０－２
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -22,7 +24,16 @@ def main():
         screen.blit(bg_img, [-x, 0])
         screen.blit(bgflip_img, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
-        screen.blit(fly_img,[300, 200])
+        key_lst = pg.key.get_pressed()
+        if key_lst[pg.K_UP]:
+            fly_rct.move_ip((0, -1))
+        if key_lst[pg.K_DOWN]:
+            fly_rct.move_ip((0, 1))
+        if key_lst[pg.K_LEFT]:
+            fly_rct.move_ip((-1, 0))
+        if key_lst[pg.K_RIGHT]:
+            fly_rct.move_ip((1, 0))
+        screen.blit(fly_img,fly_rct)
         pg.display.update()
         tmr += 1        
         clock.tick(200)
