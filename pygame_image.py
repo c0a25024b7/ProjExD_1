@@ -10,14 +10,18 @@ def main():
     screen = pg.display.set_mode((800, 600))
     clock  = pg.time.Clock()
     bg_img = pg.image.load("fig/pg_bg.jpg")
+    bgflip_img = bg_img
+    bgflip_img = pg.transform.flip(bgflip_img,True,False)
     fly_img = pg.image.load("fig/3.png")#練習３
     fly_img = pg.transform.flip(fly_img ,True ,False)#練習３
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        x = tmr
+        x = tmr%3200
         screen.blit(bg_img, [-x, 0])
+        screen.blit(bgflip_img, [-x+1600, 0])
+        screen.blit(bg_img, [-x+3200, 0])
         screen.blit(fly_img,[300, 200])
         pg.display.update()
         tmr += 1        
