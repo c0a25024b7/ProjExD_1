@@ -33,6 +33,8 @@ def main():
             fly_rct.move_ip((-1, 0))
         if key_lst[pg.K_RIGHT]:
             fly_rct.move_ip((1, 0))
+        else:
+            fly_rct.move_ip((-1, 0))
         screen.blit(fly_img,fly_rct)
         pg.display.update()
         tmr += 1        
