@@ -17,6 +17,8 @@ def main():
     fly_rct = fly_img.get_rect() # 練習１０ー１
     fly_rct.center =300 ,200 #練習１０－２
     tmr = 0
+    y = -1
+    z = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
@@ -26,18 +28,19 @@ def main():
         screen.blit(bg_img, [-x+3200, 0])
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]:
-            fly_rct.move_ip((0, -1))
+            z = -1
         if key_lst[pg.K_DOWN]:
-            fly_rct.move_ip((0, 1))
+            z = 1
         if key_lst[pg.K_LEFT]:
-            fly_rct.move_ip((-1, 0))
+            y = -2
         if key_lst[pg.K_RIGHT]:
-            fly_rct.move_ip((1, 0))
-        else:
-            fly_rct.move_ip((-1, 0))
+            y = 1
+        fly_rct.move_ip((y, z))
         screen.blit(fly_img,fly_rct)
         pg.display.update()
         tmr += 1        
+        y = -1
+        z = 0
         clock.tick(200)
 
 
